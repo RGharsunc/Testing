@@ -7,13 +7,12 @@ import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Created by Vardan on 03.12.2017.
- */
+
 public class MethodsOfTesting {
 
 
     public static void assertHomePage(WebDriver driver, String id, String buttonName, String currentUrl) {
+
 
         try {
             Thread.sleep(2000);

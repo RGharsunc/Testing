@@ -19,11 +19,12 @@ public class HomePageTest {
 
     @Test
     void checkManueButtons() {
-        System.setProperty("webdriver.chrome.driver", "/chromeDriver.exe");
+        System.setProperty("webdriver.chrome.driver", "E:\\GitRepository\\Testing\\vivustest\\src\\test\\java\\com\\instigatemobile\\vivus\\web\\resources\\chromedriver.exe");
 
         WebDriver driver = new ChromeDriver();
-        HomePage homePage = new HomePage(driver, "https://www.armath.am/");
         driver.manage().window().maximize();
+
+        HomePage homePage = new HomePage(driver, "https://www.armath.am/");
 
 
         //HOME button's assertion
@@ -56,7 +57,7 @@ public class HomePageTest {
         assertHomePage(driver, "id_donate", "donate", "donate.html");
 
 
-//        driver.close();
+        driver.close();
     }
 
 
