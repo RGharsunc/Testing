@@ -1,9 +1,9 @@
 
 package com.instigatemobile.vivus.web;
 
-import static com.instigatemobile.vivus.web.mthods.MethodsOfTesting.assertHomePage;
-import static com.instigatemobile.vivus.web.mthods.MethodsOfTesting.assertNewPageAndGoBackToHome;
-import static com.instigatemobile.vivus.web.mthods.MethodsOfTesting.getElementByState;
+import static com.instigatemobile.vivus.web.methodsOfTesting.MethodsOfTesting.assertHomePage;
+import static com.instigatemobile.vivus.web.methodsOfTesting.MethodsOfTesting.assertNewPageAndGoBackToHome;
+import static com.instigatemobile.vivus.web.methodsOfTesting.MethodsOfTesting.getElementByState;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
@@ -11,67 +11,61 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-
-
 public class HomePageTest {
 
-
-
+String driverPath="E:\\GitRepository\\Testing\\vivustest\\src\\test\\java\\com\\instigatemobile\\vivus\\web\\resources\\chromedriver.exe";
     @Test
     void checkManueButtons() {
-        System.setProperty("webdriver.chrome.driver", "E:\\GitRepository\\Testing\\vivustest\\src\\test\\java\\com\\instigatemobile\\vivus\\web\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", driverPath);
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-        HomePage homePage = new HomePage(driver, "https://www.armath.am/");
+        HomePage homePage = new HomePage(driver);
 
 
         //HOME button's assertion
-        assertHomePage(driver, "id_home", "HOME", "index.html");
+        assertHomePage(homePage.getWebDriver(), homePage.getHomeButton(driver), homePage.getHomeButtonUrl(), homePage.getHomeButtonText(), 2000);
 
 
         //ABOUT button's assertion
-        assertHomePage(driver, "id_about", "ABOUT", "about.html");
+        assertHomePage(homePage.getWebDriver(), homePage.getAboutButton(driver), homePage.getAboutButtonUrl(), homePage.getAboutButtonText(), 2000);
 
         //ARMATH LABS buttons assertion
-        assertHomePage(driver, "id_labs", "ARMATH LABS", "labs.html");
+        assertHomePage(homePage.getWebDriver(), homePage.getLabsButton(driver), homePage.getLabsButtonUrl(), homePage.getLabsButtonText(), 2000);
 
 
         //ONLINE RESOURCES buttons assertion
-        assertNewPageAndGoBackToHome(driver, "id_online_resources", "ONLINE RESOURCES", "ggg.nairi.education");
+        assertNewPageAndGoBackToHome(driver, homePage.getResourcesButton(driver), homePage.getResourcesButtonUrl(), homePage.getResourcesButtonText(), 2000);
 
         //EVENTS buttons assertion
-        assertHomePage(driver, "id_events", "EVENTS", "events.html");
+        assertHomePage(homePage.getWebDriver(), homePage.getEventsButton(driver), homePage.getEventsButtonUrl(), homePage.getEventsButtonText(), 2000);
 
         //PARTNERS buttons assertion
-        assertHomePage(driver, "id_partners", "PARTNERS", "partners.html");
+        assertHomePage(homePage.getWebDriver(), homePage.getPartnersButton(driver), homePage.getPartnersButtonUrl(), homePage.getPartnersButtonText(), 2000);
 
         //GALLERY buttons assertion
-        assertHomePage(driver, "id_gallery", "gallery", "gallery.html");
+        assertHomePage(homePage.getWebDriver(), homePage.getGalleryButton(driver), homePage.getGalleryButtonUrl(), homePage.getGalleryButtonText(), 2000);
 
         //CONTACTS buttons assertion
-        assertHomePage(driver, "id_contacts", "CONTACTS", "contacts.html");
+        assertHomePage(homePage.getWebDriver(), homePage.getContactsButton(driver), homePage.getContactsButtonUrl(), homePage.getContactsButtonText(), 2000);
 
         //DONATE buttons assertion
-        assertHomePage(driver, "id_donate", "donate", "donate.html");
+        assertHomePage(homePage.getWebDriver(), homePage.getDonateButton(driver), homePage.getDonateButtonUrl(), homePage.getDonateButtonText(), 2000);
 
 
         driver.close();
     }
 
 
-
-
     @Test
-    void chekStatesNames() {
-//        System.setProperty("webdriver.chrome.driver", "/chromeDriver.exe");
-
-        String[] statArray = {"Yereven", "Aragacotn", "Ararat", "Armavir", "Vajots Dzor", "Gegharkunik", "Koyayk", "Lori", "Shirak", "Syunik", "Tavush", "Arcakh"};
+    void checkStatesNames() {
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        HomePage homePage2 = new HomePage(driver, "https://armath.am/labs.html");
-        getElementByState(statArray, "id_states", driver);
+        LabsPage labsPage = new LabsPage(driver);
+
+        getElementByState(labsPage.getStatArray(), labsPage.getSelectTagId(), driver,2000);
         driver.close();
     }
 
